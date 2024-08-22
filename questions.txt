@@ -33,7 +33,7 @@ Implement the **DoublyLinkedList** class with methods for insertion, deletion, a
 
 Task 3
 Test the implemented functionality by performing various operations on the doubly linked list.
-💡 We can also implement Doubly Linked Lists. You can read the following resource to learn more about it.
+We can also implement Doubly Linked Lists. You can read the following resource to learn more about it.
 
 Resource: Medium Doubly Linked List
 

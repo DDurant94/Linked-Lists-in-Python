@@ -9,6 +9,7 @@ class Node:
   def __init__(self,song):
     self.song = song
     self.next = None
+    self.prev = None
       
 class PlaylistManager:
   def __init__(self):
@@ -18,52 +19,60 @@ class PlaylistManager:
   def add_song(self,title,artist,duration,genre):
     new_song = Song(title,artist,duration,genre)
     new_node = Node(new_song)
-    if self.head is None:
+    
+    if not self.head:
       self.head = new_node
       self.tail = new_node
+      
     else:
       self.tail.next = new_node
+      new_node.prev = self.tail
       self.tail = new_node
-    
+  
   def insertion(self,position,title,artist,duration,genre):
     new_song = Song(title,artist,duration,genre)
     new_node = Node(new_song)
+    if not self.head:
+      self.head = new_node
+      self.tail = new_node
+      return 
     if position == 0:
       new_node.next = self.head
+      self.head.prev = new_node
       self.head = new_node
-      if not self.tail:
-        self.tail = new_node
     else:
       current = self.head
-      previous = None
       current_position = 0
       while current != None and current_position < position:
-        previous = current
         current = current.next
-        current_position += 1
-      previous.next = new_node
-      new_node.next = current
-      if current is None:
-        self.tails = new_node
+        current_position +=1
       
-  def deletion(self,title):
-    if not self.head:
-      print("Not Songs in Playlist")
-      return 
+      if current is None:
+        self.tail.next = new_node
+        new_node.prev = self.tail
+        self.tail = new_node
+      else:
+        current.prev.next = new_node
+        new_node.next = current
+        new_node.prev = current.prev
+        current.prev = new_node
     
-    if self.head.song.title == title:
-      self.head = self.head.next
-      return
-    prev = None
+  def deletion(self,title):
     current = self.head
     while current:
       if current.song.title == title:
-        prev.next = current.next
-        return
-      prev = current
+        if current == self.head:
+          self.head = current.next
+        if current == self.tail:
+          self.tail = current.prev
+        if current.prev:
+          current.prev.next = current.next
+        if current.next:
+          current.next.prev = current.prev
+        return True
       current = current.next
-    print("{} was not found in playlist.".format(title))
-  
+    return False
+    
   def traversal(self):
     if not self.head:
       print("No Songs in Playlist")
@@ -75,6 +84,7 @@ class PlaylistManager:
       print("Title: {}, Artist: {}, Duration: {} seconds, Genre: {}".format(song.title,song.artist,song.duration,song.genre))
       print("<---------------------------->")
       current = current.next
+
 playlist_manager = PlaylistManager()
      
 def adding_song():
@@ -118,6 +128,5 @@ def app():
       break
     else:
       print("Invalid Input")
-      
-      
+         
 app()
