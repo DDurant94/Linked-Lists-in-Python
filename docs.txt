@@ -1,4 +1,8 @@
 About:
+  This program is a music playlist manager. I have implemented both singly and doubly linked lists to demonstrate my understanding of these 
+  data structures while working with lists. Both are fundamentally the same, but the doubly linked list is linked to both the previous and 
+  next list items. I have implemented functions to add a song, add a song by index, delete a song by title, and view all songs. While Music 
+  Playlist Manager is a small and simple program, it explores and demonstrates how linked lists can be used efficiently for managing lists.
 
 Questions:
   Implementing a Singly Linked List in Python

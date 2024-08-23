@@ -17,3 +17,4 @@ Contact Information:
   <https://www.codewars.com/users/ddurant94>
 
 About:
+  This is a singly and doubly linked list program that explores the fundamentals of both types of linked lists. It is demonstrated through a music playlist maker, allowing you to add and delete songs from the playlist. To learn more, refer to docs.txt.
